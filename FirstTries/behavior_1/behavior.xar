@@ -15,7 +15,7 @@
             <BehaviorLayer name="behavior_layer1">
                 <BehaviorKeyframe name="keyframe1" index="1">
                     <Diagram>
-                        <Box name="Walk" id="1" localization="8" tooltip="" x="242" y="361">
+                        <Box name="Walk" id="1" localization="8" tooltip="" x="198" y="360">
                             <bitmap>media/images/box/box-python-script.png</bitmap>
                             <script language="4">
                                 <content>
@@ -47,7 +47,7 @@
                             <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
                             <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
                         </Box>
-                        <Box name="Walk and turn" id="2" localization="8" tooltip="" x="253" y="206">
+                        <Box name="Walk and turn" id="2" localization="8" tooltip="" x="109" y="121">
                             <bitmap>media/images/box/box-python-script.png</bitmap>
                             <script language="4">
                                 <content>
@@ -66,14 +66,10 @@ class MyClass(GeneratedClass):
 
     def onInput_onStart(self):
         #self.onStopped() #activate the output of the box
-        x = self.getParameter("x")
-        y = self.getParameter("y")
-        amountToTurn = math.atan2(y,x)
-        amountToWalk = math.sqrt(x*x+y*y)
         motionProxy = ALProxy("ALMotion")
-        motionProxy.walkTo(0.0,0.0,amountToTurn)
-        motionProxy.walkTo(amountToWalk,0.0,0.0)
-        pass
+        motionProxy.walkTo(0.0, 0.0, 0.8)
+
+        self.onStopped()
 
     def onInput_onStop(self):
         self.onUnload() #it is recommended to reuse the clean-up as the box is stopped
@@ -87,7 +83,7 @@ class MyClass(GeneratedClass):
                             <Parameter name="x" inherits_from_parent="0" content_type="2" value="2" default_value="0.2" min="-2" max="2" tooltip="" id="5" />
                             <Parameter name="y" inherits_from_parent="0" content_type="2" value="2" default_value="0.2" min="-2" max="2" tooltip="" id="6" />
                         </Box>
-                        <Box name="Speech Reco." id="3" localization="8" tooltip="Recognize a word from a list of words set in the box parameters.&#x0A;&#x0A;V1.1.0&#x0A;" x="438" y="193">
+                        <Box name="Speech Reco." id="3" localization="8" tooltip="Recognize a word from a list of words set in the box parameters.&#x0A;&#x0A;V1.1.0&#x0A;" x="71" y="469">
                             <bitmap>media/images/box/interaction/ear.png</bitmap>
                             <script language="4">
                                 <content>
@@ -172,7 +168,7 @@ class MyClass(GeneratedClass):
                             <Parameter name="Enable word spotting" inherits_from_parent="0" content_type="0" value="0" default_value="0" tooltip="If this option is not activated the robot will only understand exact expressions. If it is, he will spot the exact expressions even in the middle of a sentence.&#x0A;&#x0A;!!Warning!! This option is only available with the speech recognition module using Nuance (ie in Atom version of the robot)." id="10" />
                             <Resource name="Speech recognition" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Say" id="4" localization="8" tooltip="Say some text. Note that you must open the box to enter the text." x="618" y="331">
+                        <Box name="Say" id="4" localization="8" tooltip="Say some text. Note that you must open the box to enter the text." x="311" y="466">
                             <bitmap>media/images/box/interaction/say.png</bitmap>
                             <script language="4">
                                 <content>
@@ -366,7 +362,7 @@ class MyClass(GeneratedClass):
                                                     <chinese>
                                                         <![CDATA[]]>
 </chinese>
-                                                    <language>15</language>
+                                                    <language>-1</language>
                                                 </pluginContent>
                                                 <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
                                                 <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Data is sent on the output when this input is stimulated." id="2" />
@@ -381,7 +377,7 @@ class MyClass(GeneratedClass):
                             </Timeline>
                             <Resource name="Speech" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Speech Identify" id="5" localization="8" tooltip="" x="346" y="96">
+                        <Box name="Speech Identify" id="5" localization="8" tooltip="" x="71" y="359">
                             <bitmap>media/images/box/box-python-script.png</bitmap>
                             <script language="4">
                                 <content>
@@ -412,7 +408,7 @@ class MyClass(GeneratedClass):
                             <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
                             <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
                         </Box>
-                        <Box name="Talk" id="6" localization="8" tooltip="" x="635" y="149">
+                        <Box name="Talk" id="6" localization="8" tooltip="" x="189" y="459">
                             <bitmap>media/images/box/box-python-script.png</bitmap>
                             <script language="4">
                                 <content>
@@ -425,7 +421,7 @@ class MyClass(GeneratedClass):
                             <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
                             <Parameter name="u" inherits_from_parent="0" content_type="3" value="No" default_value="No" custom_choice="0" tooltip="" id="5" />
                         </Box>
-                        <Box name="Nod yes" id="7" localization="8" tooltip="" x="109" y="138">
+                        <Box name="Nod yes" id="7" localization="8" tooltip="" x="323" y="361">
                             <bitmap>media/images/box/box-python-script.png</bitmap>
                             <script language="4">
                                 <content>
@@ -444,13 +440,13 @@ class MyClass(GeneratedClass):
     def onInput_onStart(self):
         #self.onStopped() #activate the output of the box
         motionProxy = ALProxy("ALMotion")
-        names = ['HeadYaw', 'HeadPitch']
+        names = ['LHipRoll', "RHipYawz"]
         times = [[1.0], [1.0]]
-        motionProxy.angleInterpolation(names, [0.0, 0.0], times, True)
-        for i in range(3):
-            motionProxy.angleInterpolation(names, [0.0, 1.0], times, True)
-            motionProxy.angleInterpolation(names, [0.0, -1.0], times, True)
-        motionProxy.angleInterpolation(names, [0.0, 0.0], times, True)
+        motionProxy.angleInterpolation(names, [0.1, 0.1], times, True)
+        for i in range(1):
+            motionProxy.angleInterpolation(names, [.5, .4], times, True)
+            motionProxy.angleInterpolation(names, [0.1, .1], times, True)
+#        motionProxy.angleInterpolation(names, [0.0], times, True)
 
         self.onStopped()
 
@@ -464,10 +460,478 @@ class MyClass(GeneratedClass):
                             <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
                             <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
                         </Box>
-                        <Link inputowner="2" indexofinput="2" outputowner="2" indexofoutput="4" />
+                        <Box name="Crane" id="8" localization="8" tooltip="kung fu crane stand" x="247" y="9">
+                            <bitmap>../../../../../Users/Bonilapa/Desktop/stili500.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[from time import sleep
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        #put initialization code here
+        pass
+
+    def onUnload(self):
+        #put clean-up code here
+        pass
+
+    def onInput_onStart(self):
+        #self.onStopped() #activate the output of the box
+        standOnOneLeg()
+        legUp()
+#        standInit()
+
+        self.onStopped()
+
+    def onInput_onStop(self):
+        self.onUnload() #it is recommended to reuse the clean-up as the box is stopped
+        self.onStopped() #activate the output of the box
+def standOnOneLeg():
+    motionProxy = ALProxy("ALMotion")
+    names = ['LHipRoll', 'LAnkleRoll', 'RHipRoll', 'RAnkleRoll' ]
+    times = [[1.0], [1.0], [1.0], [1.0]]
+    motionProxy.angleInterpolation(names, [-0.3, 0.3, -0.3, 0.3], times, True)
+
+
+def legUp():
+    motionProxy = ALProxy("ALMotion")
+    names = ['RHipPitch', 'RKneePitch', 'RAnklePitch', 'RShoulderPitch', 'RShoulderRoll', 'RElbowRoll', 'LShoulderPitch', 'LShoulderRoll', 'LElbowRoll', 'RHipRoll', 'RAnkleRoll']
+    times = [[1.0],[1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0]]
+    motionProxy.angleInterpolation(names, [-2.0, 1.8, 2.0, 1.5, -2.0, 0.0, 1.5, 2.0, 0.0, 0.0, 0.0], times, True)
+    sleep(3)
+    motionProxy.angleInterpolation(names, [-0.4, 0.7, -0.35, 1.4, -0.3, 1.0, 1.4, 0.3, -1.0, -0.3, 0.3], times, True)
+    names = ['LHipRoll', 'LAnkleRoll', 'RHipRoll', 'RAnkleRoll' ]
+    times = [[1.0], [1.0], [1.0], [1.0]]
+    motionProxy.angleInterpolation(names, [0.0, 0.0, 0.0, 0.0], times, True)
+
+def standInit():
+    motionProxy = ALProxy("ALMotion")
+    names = ['RHipRoll', 'LHipRoll', 'RHipPitch', 'LHipPitch', 'RKneePitch', 'LKneePitch', 'RAnklePitch', 'LAnklePitch', 'LHipYawPitch', 'RHipYawPitch', 'HeadYaw', 'HeadPitch',  'RShoulderPitch', 'LShoulderPitch', 'RShoulderRoll', 'LShoulderRoll', 'LElbowYaw', 'RElbowYaw', 'LElbowRoll', 'RElbowRoll', 'RHand', 'LHand']
+    times = [[1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0]]
+    motionProxy.angleInterpolation(names, [0, 0, -0.45, -0.45, 0.7, 0.7, -0.35, -0.35, 0.0, 0.0, 0.0, 0.0, 1.4, 1.4, -0.3, 0.3, -1.4, 1.4, -1.0, 1.0, 0.24, 0.24], times, True)]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                        </Box>
+                        <Box name="Go to position StandInit" id="9" localization="8" tooltip="Robot will go to the position StandInit&lt;br/&gt;Position description : Nao is ready to do anything from this position !" x="107" y="13">
+                            <bitmap>media/images/positions/StandInit.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[#~ This script was generated automatically by drang&drop from Position Library
+class MyClass(GeneratedClass):
+    def __init__(self):
+        try: # disable autoBind
+          GeneratedClass.__init__(self, False)
+        except TypeError: # if NAOqi < 1.14
+          GeneratedClass.__init__( self )
+
+    def onLoad(self):
+        self.postureProxy = None
+        try:
+            self.postureProxy = ALProxy("ALRobotPosture")
+        except:
+            self.logger.error("Module 'ALRobotPosture' not found.")
+
+    def onUnload(self):
+        if(self.postureProxy != None):
+            self.postureProxy.stopMove()
+
+    def onInput_onStart(self):
+        if(self.postureProxy != None):
+            result = self.postureProxy.goToPosture("StandInit", 0.8)
+            if(result):
+                self.success()
+            else:
+                self.logger.error("Posture StandInit is not a part of the standard posture library or robot cannot reach the posture")
+                self.failure()
+        else:
+            self.failure()
+
+    def onInput_onStop(self):
+        self.onUnload() #~ it is recommanded to call onUnload of this box in a onStop method,               as the code written in onUnload is used to stop the box as well
+        pass]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="success" type="1" type_size="1" nature="1" inner="0" tooltip="Stimulated if the posture has been reached." id="4" />
+                            <Output name="failure" type="1" type_size="1" nature="1" inner="0" tooltip="Stimulated if the posture could not be reached." id="5" />
+                            <Resource name="All motors" type="Lock" timeout="0" />
+                            <Resource name="Stiffness" type="Lock" timeout="0" />
+                        </Box>
+                        <Box name="Combat" id="10" localization="8" tooltip="Combat stand" x="379" y="126">
+                            <bitmap>../../../../../Users/Bonilapa/Desktop/уууу.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        #put initialization code here
+        pass
+
+    def onUnload(self):
+        #put clean-up code here
+        pass
+
+    def onInput_onStart(self):
+        #self.onStopped() #activate the output of the box
+        combat()
+        punch()
+#        kick()
+        standInit()
+
+        self.onStopped()
+
+    def onInput_onStop(self):
+        self.onUnload() #it is recommended to reuse the clean-up as the box is stopped
+        self.onStopped() #activate the output of the box
+
+def combat():
+    motionProxy = ALProxy("ALMotion")
+    names = ['HeadYaw', 'HeadPitch', 'LShoulderRoll', 'LShoulderPitch', 'LElbowRoll', 'LElbowYaw', 'LHipYawPitch','LAnklePitch', 'RElbowYaw', 'RWristYaw', 'RShoulderPitch', 'RShoulderRoll', 'RElbowRoll', 'RHipYawPitch', 'RAnklePitch']
+    times = [[1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0]]
+    motionProxy.angleInterpolation(names, [-0.8, 0.2, -0.1, 0.6, -1.7, -0.4, -0.4, -0.2, 2.0, 0.0, 1.0, -0.2, 1.8, -0.4, -0.2], times, True)
+    names = ['RElbowYaw', 'RWristYaw']
+    times = [[1], [1]]
+    motionProxy.angleInterpolation(names, [2.2, 1.4], times, True)
+    names = ['RHand']
+    times = [[1]]
+    for i in range(2):
+        motionProxy.angleInterpolation(names, [0.9], times, True)
+        motionProxy.angleInterpolation(names, [0.1], times, True)
+    names = ['RElbowYaw', 'RWristYaw', 'RShoulderPitch', 'RShoulderRoll', 'RElbowRoll']
+    times = [[1], [1], [1], [1], [1]]
+    motionProxy.angleInterpolation(names, [2.0, -1.0, 1.0, -0.2, 1.8], times, True)
+
+def standOnOneLeg():
+    motionProxy = ALProxy("ALMotion")
+    names = ['RHipRoll', 'RAnkleRoll', 'LHipRoll', 'LAnkleRoll']
+    times = [[1.0], [1.0], [1.0], [1.0]]
+    motionProxy.angleInterpolation(names, [-0.2, 0.2, -0.2, 0.2], times, True)
+
+def punch():
+    motionProxy = ALProxy("ALMotion")
+    names = [ 'RElbowYaw', 'RWristYaw', 'RShoulderPitch', 'RShoulderRoll', 'RElbowRoll']
+    times = [[1.0], [1.0], [1.0], [1.0], [1.0]]
+    for i in range(2):
+        motionProxy.angleInterpolation(names, [1.1, -1.0, -0.3, -0.7, 0.0], times, True)
+        motionProxy.angleInterpolation(names, [2.0, -1.0, 1.0, -0.2, 1.8], times, True)
+
+def kick():
+    standOnOneLeg()
+    motionProxy = ALProxy("ALMotion")
+    names = ['LHipRoll', 'LAnklePitch', 'RHipRoll', 'RHipPitch', 'RKneePitch']
+    times = [[1.0], [1.0], [1.0], [1.0], [1.0]]
+    motionProxy.angleInterpolation(names, [0.0, -0.35, -1.0, -1.4, 1.7], times, True)
+    names = ['RHipPitch', 'RKneePitch']
+    times = [[1.0], [1.0], [1.0], [1.0], [1.0]]
+    motionProxy.angleInterpolation(names, [-0.9, 0.1], times, True)
+    motionProxy.angleInterpolation(names, [-1.4, 1.7], times, True)
+    names = ['LHipRoll', 'LAnklePitch', 'RHipRoll', 'RHipPitch', 'RKneePitch']
+    times = [[1.0], [1.0], [1.0], [1.0], [1.0]]
+    motionProxy.angleInterpolation(names, [-0.2, -0.2, -0.2, -0.5, 0.7], times, True)
+    names = ['RHipRoll', 'RAnkleRoll', 'LHipRoll', 'LAnkleRoll']
+    times = [[1.0], [1.0], [1.0], [1.0]]
+    motionProxy.angleInterpolation(names, [0, 0, 0, 0], times, True)
+
+def standInit():
+    motionProxy = ALProxy("ALMotion")
+    names = ['RHipRoll', 'LHipRoll', 'RHipPitch', 'LHipPitch', 'RKneePitch', 'LKneePitch', 'RAnklePitch', 'LAnklePitch', 'LHipYawPitch', 'RHipYawPitch', 'HeadYaw', 'HeadPitch',  'RShoulderPitch', 'LShoulderPitch', 'RShoulderRoll', 'LShoulderRoll', 'LElbowYaw', 'RElbowYaw', 'LElbowRoll', 'RElbowRoll', 'RHand', 'LHand']
+    times = [[1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0]]
+    motionProxy.angleInterpolation(names, [0, 0, -0.45, -0.45, 0.7, 0.7, -0.35, -0.35, 0.0, 0.0, 0.0, 0.0, 1.4, 1.4, -0.3, 0.3, -1.4, 1.4, -1.0, 1.0, 0.24, 0.24], times, True)]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                        </Box>
+                        <Box name="mot" id="11" localization="8" tooltip="" x="470" y="398">
+                            <bitmap>media/images/box/box-python-script.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[from time import sleep
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        #put initialization code here
+        pass
+
+    def onUnload(self):
+        #put clean-up code here
+        pass
+
+    def onInput_onStart(self):
+        #self.onStopped() #activate the output of the box
+        sleep(2)
+        legAngle = 0.3;
+        motionProxy = ALProxy("ALMotion")
+        names = ['LHipYawPitch','RHipYawPitch']
+        times = [[1],[1]]
+        motionProxy.angleInterpolation(names, [-0.4, -0.4], times, True)
+        self.onStopped()
+
+    def onInput_onStop(self):
+        self.onUnload() #it is recommended to reuse the clean-up as the box is stopped
+        self.onStopped() #activate the output of the box]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                        </Box>
+                        <Box name="Regards" id="12" localization="8" tooltip="Bow" x="379" y="228">
+                            <bitmap>../../../../../Users/Bonilapa/Desktop/oss_4.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[from time import sleep
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        #put initialization code here
+        pass
+
+    def onUnload(self):
+        #put clean-up code here
+        pass
+
+    def onInput_onStart(self):
+        #self.onStopped() #activate the output of the box
+        motionProxy = ALProxy("ALMotion")
+        names = ['RElbowRoll', 'LElbowRoll', 'RShoulderRoll', 'LShoulderRoll']
+        times = [[1], [1],[1], [1]]
+        motionProxy.angleInterpolation(names, [0, 0, -0.1, 0.1], times, True)
+        names = ['RHipPitch', 'LHipPitch', 'RAnklePitch', 'LAnklePitch']
+        motionProxy.angleInterpolation(names, [-1.2, -1.2, -0.1, -0.1], times, True)
+        sleep(2)
+        motionProxy.angleInterpolation(names, [-0.44, -0.44, -0.35, -0.35], times, True)
+        names = ['RElbowRoll', 'LElbowRoll', 'RShoulderRoll', 'LShoulderRoll']
+        motionProxy.angleInterpolation(names, [1, -1, -0.4, 0.4], times, True)
+        standInit()
+
+        self.onStopped()
+
+    def onInput_onStop(self):
+        self.onUnload() #it is recommended to reuse the clean-up as the box is stopped
+        self.onStopped() #activate the output of the box
+
+def standInit():
+    motionProxy = ALProxy("ALMotion")
+    names = ['RHipRoll', 'LHipRoll', 'RHipPitch', 'LHipPitch', 'RKneePitch', 'LKneePitch', 'RAnklePitch', 'LAnklePitch', 'LHipYawPitch', 'RHipYawPitch', 'HeadYaw', 'HeadPitch',  'RShoulderPitch', 'LShoulderPitch', 'RShoulderRoll', 'LShoulderRoll', 'LElbowYaw', 'RElbowYaw', 'LElbowRoll', 'RElbowRoll', 'RHand', 'LHand']
+    times = [[1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0]]
+    motionProxy.angleInterpolation(names, [0, 0, -0.45, -0.45, 0.7, 0.7, -0.35, -0.35, 0.0, 0.0, 0.0, 0.0, 1.4, 1.4, -0.3, 0.3, -1.4, 1.4, -1.0, 1.0, 0.24, 0.24], times, True)]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                        </Box>
+                        <Box name="Go to position StandInit (1)" id="13" localization="8" tooltip="Robot will go to the position StandInit&lt;br/&gt;Position description : Nao is ready to do anything from this position !" x="369" y="10">
+                            <bitmap>media/images/positions/StandInit.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[#~ This script was generated automatically by drang&drop from Position Library
+class MyClass(GeneratedClass):
+    def __init__(self):
+        try: # disable autoBind
+          GeneratedClass.__init__(self, False)
+        except TypeError: # if NAOqi < 1.14
+          GeneratedClass.__init__( self )
+
+    def onLoad(self):
+        self.postureProxy = None
+        try:
+            self.postureProxy = ALProxy("ALRobotPosture")
+        except:
+            self.logger.error("Module 'ALRobotPosture' not found.")
+
+    def onUnload(self):
+        if(self.postureProxy != None):
+            self.postureProxy.stopMove()
+
+    def onInput_onStart(self):
+        if(self.postureProxy != None):
+            result = self.postureProxy.goToPosture("StandInit", 0.8)
+            if(result):
+                self.success()
+            else:
+                self.logger.error("Posture StandInit is not a part of the standard posture library or robot cannot reach the posture")
+                self.failure()
+        else:
+            self.failure()
+
+    def onInput_onStop(self):
+        self.onUnload() #~ it is recommanded to call onUnload of this box in a onStop method,               as the code written in onUnload is used to stop the box as well
+        pass]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="success" type="1" type_size="1" nature="1" inner="0" tooltip="Stimulated if the posture has been reached." id="4" />
+                            <Output name="failure" type="1" type_size="1" nature="1" inner="0" tooltip="Stimulated if the posture could not be reached." id="5" />
+                            <Resource name="All motors" type="Lock" timeout="0" />
+                            <Resource name="Stiffness" type="Lock" timeout="0" />
+                        </Box>
+                        <Box name="Go to position StandInit (2)" id="14" localization="8" tooltip="Robot will go to the position StandInit&lt;br/&gt;Position description : Nao is ready to do anything from this position !" x="242" y="127">
+                            <bitmap>media/images/positions/StandInit.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[#~ This script was generated automatically by drang&drop from Position Library
+class MyClass(GeneratedClass):
+    def __init__(self):
+        try: # disable autoBind
+          GeneratedClass.__init__(self, False)
+        except TypeError: # if NAOqi < 1.14
+          GeneratedClass.__init__( self )
+
+    def onLoad(self):
+        self.postureProxy = None
+        try:
+            self.postureProxy = ALProxy("ALRobotPosture")
+        except:
+            self.logger.error("Module 'ALRobotPosture' not found.")
+
+    def onUnload(self):
+        if(self.postureProxy != None):
+            self.postureProxy.stopMove()
+
+    def onInput_onStart(self):
+        if(self.postureProxy != None):
+            result = self.postureProxy.goToPosture("StandInit", 0.8)
+            if(result):
+                self.success()
+            else:
+                self.logger.error("Posture StandInit is not a part of the standard posture library or robot cannot reach the posture")
+                self.failure()
+        else:
+            self.failure()
+
+    def onInput_onStop(self):
+        self.onUnload() #~ it is recommanded to call onUnload of this box in a onStop method,               as the code written in onUnload is used to stop the box as well
+        pass]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="success" type="1" type_size="1" nature="1" inner="0" tooltip="Stimulated if the posture has been reached." id="4" />
+                            <Output name="failure" type="1" type_size="1" nature="1" inner="0" tooltip="Stimulated if the posture could not be reached." id="5" />
+                            <Resource name="All motors" type="Lock" timeout="0" />
+                            <Resource name="Stiffness" type="Lock" timeout="0" />
+                        </Box>
+                        <Box name="Go to position StandInit (3)" id="15" localization="8" tooltip="Robot will go to the position StandInit&lt;br/&gt;Position description : Nao is ready to do anything from this position !" x="107" y="230">
+                            <bitmap>media/images/positions/StandInit.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[#~ This script was generated automatically by drang&drop from Position Library
+class MyClass(GeneratedClass):
+    def __init__(self):
+        try: # disable autoBind
+          GeneratedClass.__init__(self, False)
+        except TypeError: # if NAOqi < 1.14
+          GeneratedClass.__init__( self )
+
+    def onLoad(self):
+        self.postureProxy = None
+        try:
+            self.postureProxy = ALProxy("ALRobotPosture")
+        except:
+            self.logger.error("Module 'ALRobotPosture' not found.")
+
+    def onUnload(self):
+        if(self.postureProxy != None):
+            self.postureProxy.stopMove()
+
+    def onInput_onStart(self):
+        if(self.postureProxy != None):
+            result = self.postureProxy.goToPosture("StandInit", 0.8)
+            if(result):
+                self.success()
+            else:
+                self.logger.error("Posture StandInit is not a part of the standard posture library or robot cannot reach the posture")
+                self.failure()
+        else:
+            self.failure()
+
+    def onInput_onStop(self):
+        self.onUnload() #~ it is recommanded to call onUnload of this box in a onStop method,               as the code written in onUnload is used to stop the box as well
+        pass]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="success" type="1" type_size="1" nature="1" inner="0" tooltip="Stimulated if the posture has been reached." id="4" />
+                            <Output name="failure" type="1" type_size="1" nature="1" inner="0" tooltip="Stimulated if the posture could not be reached." id="5" />
+                            <Resource name="All motors" type="Lock" timeout="0" />
+                            <Resource name="Stiffness" type="Lock" timeout="0" />
+                        </Box>
+                        <Box name="Walk and turn (1)" id="16" localization="8" tooltip="" x="244" y="229">
+                            <bitmap>media/images/box/box-python-script.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[import math
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        #put initialization code here
+        pass
+
+    def onUnload(self):
+        #put clean-up code here
+        pass
+
+    def onInput_onStart(self):
+        #self.onStopped() #activate the output of the box
+        x = self.getParameter("x")
+        y = self.getParameter("y")
+        amountToTurn = math.atan2(y,x)
+        motionProxy = ALProxy("ALMotion")
+        motionProxy.walkTo(0.0,0.0,-0.8)
+        self.onStopped()
+
+    def onInput_onStop(self):
+        self.onUnload() #it is recommended to reuse the clean-up as the box is stopped
+        self.onStopped() #activate the output of the box]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                            <Parameter name="x" inherits_from_parent="0" content_type="2" value="2" default_value="0.2" min="-2" max="2" tooltip="" id="5" />
+                            <Parameter name="y" inherits_from_parent="0" content_type="2" value="2" default_value="0.2" min="-2" max="2" tooltip="" id="6" />
+                        </Box>
                         <Link inputowner="4" indexofinput="2" outputowner="3" indexofoutput="6" />
                         <Link inputowner="6" indexofinput="2" outputowner="3" indexofoutput="5" />
-                        <Link inputowner="7" indexofinput="2" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="3" indexofinput="2" outputowner="3" indexofoutput="4" />
+                        <Link inputowner="9" indexofinput="2" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="10" indexofinput="2" outputowner="14" indexofoutput="4" />
+                        <Link inputowner="8" indexofinput="2" outputowner="9" indexofoutput="4" />
+                        <Link inputowner="12" indexofinput="2" outputowner="16" indexofoutput="4" />
+                        <Link inputowner="16" indexofinput="2" outputowner="15" indexofoutput="4" />
+                        <Link inputowner="13" indexofinput="2" outputowner="8" indexofoutput="4" />
+                        <Link inputowner="2" indexofinput="2" outputowner="13" indexofoutput="4" />
+                        <Link inputowner="14" indexofinput="2" outputowner="2" indexofoutput="4" />
+                        <Link inputowner="15" indexofinput="2" outputowner="10" indexofoutput="4" />
+                        <Link inputowner="9" indexofinput="2" outputowner="12" indexofoutput="4" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>
